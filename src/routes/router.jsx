@@ -6,7 +6,13 @@ import Card from '../components/Home/Card';
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Card />
+		element: <App />,
+		children: [
+			{
+				path: '/',
+				element: <Home />
+			}
+		]
 	}
 ]);
 export default router;
