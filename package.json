@@ -1,5 +1,5 @@
 {
-  "name": "chef-recipe-hunter-client-side",
+  "name": "name-of-your-project",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,14 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "daisyui": "^2.51.6",
-    "firebase": "^9.21.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.0",
-    "react-toastify": "^9.1.2",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
