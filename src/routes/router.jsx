@@ -15,6 +15,7 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <Home />,
+				loader: () => fetch('https://chef-recipe-hunter-server-side-gsjoy24.vercel.app/categories')
 			},
 			{
 				path: 'register',
