@@ -4,10 +4,6 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Navigation = () => {
 	const { user, signOutMethod } = useContext(AuthContext);
-	// const handleSignOut = () => {
-
-	// }
-	console.log(user);
 	return (
 		<div className='navbar bg-base-100 px-3 md:px-14 shadow-lg sticky top-0 right-0 left-0 w-full z-50'>
 			<div className='navbar-start'>

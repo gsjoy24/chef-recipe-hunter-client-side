@@ -8,7 +8,7 @@ import {
 	signInWithPopup,
 	signInWithEmailAndPassword,
 	onAuthStateChanged,
-   signOut
+	signOut
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 export const AuthContext = createContext(null);
@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
 	const googleProvider = new GoogleAuthProvider();
 	const githubProvider = new GithubAuthProvider();
 	const [user, setUser] = useState(null);
+	const [chefs, setChefs] = useState([]);
 
 	// for sign up
 	const emailPasswordSignUp = (email, password) => {
@@ -48,10 +49,19 @@ const AuthProvider = ({ children }) => {
 			setUser(loggedInUser);
 			// setLoading(false);
 		});
-
 		return () => unsubscribe();
 	}, []);
 
+	// fetching chefs information
+	useEffect(() => {
+		fetch('https://chef-recipe-hunter-server-side-alpha.vercel.app/chefs')
+			.then((data) => data.json())
+			.then((chefs) => setChefs(chefs))
+			.catch((error) => {
+				console.log(error.message);
+			});
+	}, []);
+	
 	const authInfo = {
 		user,
 		emailPasswordSignUp,
@@ -59,7 +69,8 @@ const AuthProvider = ({ children }) => {
 		setNameAndPhoto,
 		googleSignUp,
 		githubSignUp,
-		emailPasswordSignIn
+		emailPasswordSignIn,
+		chefs
 	};
 	return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
