@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
-	const { googleSignUp, githubSignUp } = useContext(AuthContext);
+	const { googleSignUp, githubSignUp, emailPasswordSignIn } = useContext(AuthContext);
+	const [error, setError] = useState('');
 
 	// sign in with google
 	const handleGoogleSignup = () => {
@@ -33,7 +34,14 @@ const Login = () => {
 		event.preventDefault();
 		const email = event.target.email.value;
 		const password = event.target.password.value;
-		console.log(email, password);
+		emailPasswordSignIn(email, password)
+			.then((result) => {
+				console.log(result.user);
+				event.target.reset()
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
 	};
 	return (
 		<div className='flex justify-center items-center min-h-[90vh]'>
@@ -67,6 +75,9 @@ const Login = () => {
 							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full '
 						/>
 					</div>
+					{/* error message */}
+					<p className='text-red-600 text-xs mt-2'>{error}</p>
+
 					<input type='submit' value='Login' className='btn btn-primary w-full btn-sm mt-4' />
 					<p className='text-xs mt-3'>
 						<Link to='/register' className='text-violet-600'>

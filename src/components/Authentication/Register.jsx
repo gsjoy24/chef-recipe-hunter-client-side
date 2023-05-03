@@ -17,13 +17,13 @@ const Register = () => {
 	const handleEmailSignUp = (event) => {
 		event.preventDefault();
 		emailPasswordSignUp(email, password)
-			.then((result) => {
+			.then(() => {
 				setNameAndPhoto(name, photoURL)
 					.then()
 					.catch((error) => {
 						setError(error.message);
 					});
-				console.log(result.user);
+				event.target.reset();
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -116,7 +116,9 @@ const Register = () => {
 							required
 						/>
 					</div>
+					{/* error message */}
 					<p className='text-red-600 text-xs mt-2'>{error}</p>
+
 					<input type='submit' value='Register' className='btn btn-primary w-full btn-sm mt-4' />
 					<p className='text-xs mt-3'>
 						Already have an account?{' '}
