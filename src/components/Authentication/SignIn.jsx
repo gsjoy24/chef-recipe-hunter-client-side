@@ -3,49 +3,23 @@ import { Link } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
 
-const Register = () => {
-	const handleSignUp = (event) => {
+const Login = () => {
+	const handleSignIn = (event) => {
 		event.preventDefault();
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 		console.log(email, password);
 	};
 	return (
-		<div className='flex justify-center items-center min-h-[90vh] py-12'>
+		<div className='flex justify-center items-center min-h-[90vh]'>
 			<div>
 				<form
-					onSubmit={handleSignUp}
+					onSubmit={handleSignIn}
 					className='p-7 bg-slate-50 min-w-[300px] sm:min-w-[500px] max-w-lg rounded-md border border-1 border-stone-200'>
-					<h2 className='text-2xl font-bold mb-3'>Register Here</h2>
+					<h2 className='text-2xl font-bold mb-3'>Login Here</h2>
 					<hr />
-					{/* name field */}
-					<div className='form-control w-full mt-5'>
-						<label className='label'>
-							<span className='label-text'>Your Name</span>
-						</label>
-						<input
-							type='text'
-							placeholder='Name'
-							name='name'
-							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full'
-							required
-						/>
-					</div>
-					{/* Photo url field */}
-					<div className='form-control w-full'>
-						<label className='label'>
-							<span className='label-text'>Photo URL</span>
-						</label>
-						<input
-							type='link'
-							placeholder='Photo URL'
-							name='photo_url'
-							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full'
-							required
-						/>
-					</div>
 					{/* email field */}
-					<div className='form-control w-full'>
+					<div className='form-control w-full mt-5'>
 						<label className='label'>
 							<span className='label-text'>Email Address</span>
 						</label>
@@ -53,12 +27,11 @@ const Register = () => {
 							type='text'
 							placeholder='Email'
 							name='email'
-							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full'
-							required
+							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full '
 						/>
 					</div>
 					{/* password field */}
-					<div className='form-control w-full  '>
+					<div className='form-control w-full '>
 						<label className='label'>
 							<span className='label-text'>Password</span>
 						</label>
@@ -66,15 +39,17 @@ const Register = () => {
 							type='password'
 							placeholder='Password'
 							name='password'
-							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full'
-							required
+							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full '
 						/>
 					</div>
-					<input type='submit' value='Register' className='btn btn-primary w-full btn-sm mt-4' />
+					<input type='submit' value='Login' className='btn btn-primary w-full btn-sm mt-4' />
 					<p className='text-xs mt-3'>
-						Already have an account?{' '}
-						<Link to='/sign_in' className='text-violet-600 ml-2'>
-							Login here
+						<Link to='/register' className='text-violet-600'>
+							Forgot password?
+						</Link>{' '}
+						or New here?
+						<Link to='/register' className='text-violet-600 ml-2'>
+							Register
 						</Link>
 					</p>
 				</form>
@@ -95,4 +70,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default Login;

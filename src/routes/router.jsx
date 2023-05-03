@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../components/Home/Home';
 import App from '../App';
-import Card from '../components/Home/Card';
-import Login from '../components/Authentication/Login';
+import SignIn from '../components/Authentication/SignIn';
+import Register from '../components/Authentication/Register';
 
 const router = createBrowserRouter([
 	{
@@ -15,8 +15,12 @@ const router = createBrowserRouter([
 				loader: () => fetch('https://chef-recipe-hunter-server-side-alpha.vercel.app/chefs')
 			},
 			{
-				path: 'login',
-				element: <Login />
+				path: 'register',
+				element: <Register />
+			},
+			{
+				path: 'sign_in',
+				element: <SignIn />
 			}
 		]
 	}
