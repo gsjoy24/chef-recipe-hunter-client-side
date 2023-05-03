@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
-import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
-import { updateProfile } from 'firebase/auth';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -12,21 +11,47 @@ const Register = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
 
-	const { emailPasswordSignUp,setNameAndPhoto, googleSignUp, githubSignUp } = useContext(AuthContext);
+	const { emailPasswordSignUp, setNameAndPhoto, googleSignUp, githubSignUp } = useContext(AuthContext);
 
+	// sign up with email and password
 	const handleEmailSignUp = (event) => {
 		event.preventDefault();
 		emailPasswordSignUp(email, password)
 			.then((result) => {
-				setNameAndPhoto(name, photoURL).then().catch((error) => {
-					setError(error.message);
-				});
+				setNameAndPhoto(name, photoURL)
+					.then()
+					.catch((error) => {
+						setError(error.message);
+					});
 				console.log(result.user);
 			})
 			.catch((error) => {
 				setError(error.message);
 			});
 	};
+
+	// sign up with google
+	const handleGoogleSignup = () => {
+		googleSignUp()
+			.then((result) => {
+				console.log(result.user);
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
+	};
+
+	// sign up with github
+	const handleGithubSignup = () => {
+		githubSignUp()
+			.then((result) => {
+				console.log(result.user);
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
+	};
+
 	return (
 		<div className='flex justify-center items-center min-h-[90vh] py-12'>
 			<div>
@@ -105,11 +130,17 @@ const Register = () => {
 				</div>
 				{/* register with google and github */}
 				<div className='flex flex-col md:flex-row justify-between mt-7'>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto mb-5 md:mb-0'>
-						<img src={googleLogo} className='w-10' /> <p>Register with Google</p>
+					{/* google sign up */}
+					<div
+						onClick={handleGoogleSignup}
+						className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto mb-5 md:mb-0'>
+						<img src={googleLogo} className='w-10' /> <p>Continue with Google</p>
 					</div>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto'>
-						<img src={githubLogo} className='w-10' /> <p>Register with Github</p>
+					{/* github sign up */}
+					<div
+						onClick={handleGithubSignup}
+						className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto'>
+						<img src={githubLogo} className='w-10' /> <p>Continue with Github</p>
 					</div>
 				</div>
 			</div>
