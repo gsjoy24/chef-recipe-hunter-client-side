@@ -14,7 +14,7 @@ const Hero = () => {
 				</p>
 			</div>
 			<div className='hero-img'>
-				<img src={heroImg} className='w-full min-w-[250px] max-w-md block ml-3' alt='heroImg' />
+				<img src={heroImg} className='w-full min-w-[200px] max-w-md block ml-3' alt='heroImg' />
 			</div>
 		</div>
 	);

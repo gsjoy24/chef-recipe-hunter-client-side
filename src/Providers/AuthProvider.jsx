@@ -19,6 +19,16 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [chefs, setChefs] = useState([]);
 
+	// fetching chefs information
+	useEffect(() => {
+		fetch('https://chef-recipe-hunter-server-side-alpha.vercel.app/chefs')
+			.then((data) => data.json())
+			.then((chefs) => setChefs(chefs))
+			.catch((error) => {
+				console.log(error.message);
+			});
+	}, []);
+
 	// for sign up
 	const emailPasswordSignUp = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
@@ -52,16 +62,6 @@ const AuthProvider = ({ children }) => {
 		return () => unsubscribe();
 	}, []);
 
-	// fetching chefs information
-	useEffect(() => {
-		fetch('https://chef-recipe-hunter-server-side-alpha.vercel.app/chefs')
-			.then((data) => data.json())
-			.then((chefs) => setChefs(chefs))
-			.catch((error) => {
-				console.log(error.message);
-			});
-	}, []);
-	
 	const authInfo = {
 		user,
 		emailPasswordSignUp,
