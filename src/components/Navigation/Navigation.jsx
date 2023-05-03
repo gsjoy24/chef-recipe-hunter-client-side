@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Navigation = () => {
+	const { user, signOutMethod } = useContext(AuthContext);
+	// const handleSignOut = () => {
+
+	// }
+	console.log(user);
 	return (
 		<div className='navbar bg-base-100 px-3 md:px-14 shadow-lg sticky top-0 right-0 left-0 w-full z-50'>
 			<div className='navbar-start'>
@@ -28,9 +34,11 @@ const Navigation = () => {
 						<li>
 							<NavLink to='/about'>About</NavLink>
 						</li>
-						<li>
-							<NavLink to='/register'>Register</NavLink>
-						</li>
+						{!user && (
+							<li>
+								<NavLink to='/register'>Register</NavLink>
+							</li>
+						)}
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -48,19 +56,24 @@ const Navigation = () => {
 					<li>
 						<NavLink to='/about'>About</NavLink>
 					</li>
-					<li>
-						<NavLink to='/register'>Register</NavLink>
-					</li>
+					{!user && (
+						<li>
+							<NavLink to='/register'>Register</NavLink>
+						</li>
+					)}
 				</ul>
 			</div>
 			<div className='navbar-end'>
-				<img
-					src='https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-					className='w-12 h-12  rounded-full mr-3'
-				/>
-				<Link to='/sign_in' className='btn btn-primary btn-sm sm:btn-md'>
-					Sign in
-				</Link>
+				{user && <img src={user?.photoURL} className='w-12 h-12  rounded-full mr-3' />}
+				{user ? (
+					<button onClick={signOutMethod} className='btn btn-primary btn-sm sm:btn-md'>
+						Sign out
+					</button>
+				) : (
+					<Link to='/sign_in' className='btn btn-primary btn-sm sm:btn-md'>
+						Sign in
+					</Link>
+				)}
 			</div>
 		</div>
 	);
