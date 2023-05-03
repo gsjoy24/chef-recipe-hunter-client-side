@@ -28,6 +28,9 @@ const Navigation = () => {
 						<li>
 							<NavLink to='/about'>About</NavLink>
 						</li>
+						<li>
+							<NavLink to='/register'>Register</NavLink>
+						</li>
 					</ul>
 				</div>
 				<Link to='/' className='btn btn-ghost normal-case text-xl'>

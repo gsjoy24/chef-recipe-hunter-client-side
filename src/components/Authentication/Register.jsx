@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
+import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-	const handleSignUp = (event) => {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [photoURL, setPhotoURL] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
+
+	const { emailPasswordSignUp,setNameAndPhoto, googleSignUp, githubSignUp } = useContext(AuthContext);
+
+	const handleEmailSignUp = (event) => {
 		event.preventDefault();
-		const email = event.target.email.value;
-		const password = event.target.password.value;
-		console.log(email, password);
+		emailPasswordSignUp(email, password)
+			.then((result) => {
+				setNameAndPhoto(name, photoURL).then().catch((error) => {
+					setError(error.message);
+				});
+				console.log(result.user);
+			})
+			.catch((error) => {
+				setError(error.message);
+			});
 	};
 	return (
 		<div className='flex justify-center items-center min-h-[90vh] py-12'>
 			<div>
 				<form
-					onSubmit={handleSignUp}
+					onSubmit={handleEmailSignUp}
 					className='p-7 bg-slate-50 min-w-[300px] sm:min-w-[500px] max-w-lg rounded-md border border-1 border-stone-200'>
 					<h2 className='text-2xl font-bold mb-3'>Register Here</h2>
 					<hr />
@@ -24,6 +41,7 @@ const Register = () => {
 							<span className='label-text'>Your Name</span>
 						</label>
 						<input
+							onChange={(event) => setName(event.target.value)}
 							type='text'
 							placeholder='Name'
 							name='name'
@@ -37,6 +55,7 @@ const Register = () => {
 							<span className='label-text'>Photo URL</span>
 						</label>
 						<input
+							onChange={(event) => setPhotoURL(event.target.value)}
 							type='link'
 							placeholder='Photo URL'
 							name='photo_url'
@@ -50,6 +69,7 @@ const Register = () => {
 							<span className='label-text'>Email Address</span>
 						</label>
 						<input
+							onChange={(event) => setEmail(event.target.value)}
 							type='text'
 							placeholder='Email'
 							name='email'
@@ -63,6 +83,7 @@ const Register = () => {
 							<span className='label-text'>Password</span>
 						</label>
 						<input
+							onChange={(event) => setPassword(event.target.value)}
 							type='password'
 							placeholder='Password'
 							name='password'
@@ -70,6 +91,7 @@ const Register = () => {
 							required
 						/>
 					</div>
+					<p className='text-red-600 text-xs mt-2'>{error}</p>
 					<input type='submit' value='Register' className='btn btn-primary w-full btn-sm mt-4' />
 					<p className='text-xs mt-3'>
 						Already have an account?{' '}
@@ -82,11 +104,11 @@ const Register = () => {
 					<div className='w-1/4 h-px bg-slate-400 mr-3'></div>or<div className='w-1/4 h-px bg-slate-400 ml-3'></div>
 				</div>
 				{/* register with google and github */}
-				<div className='flex justify-between mt-7'>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold'>
+				<div className='flex flex-col md:flex-row justify-between mt-7'>
+					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto mb-5 md:mb-0'>
 						<img src={googleLogo} className='w-10' /> <p>Register with Google</p>
 					</div>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold'>
+					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto'>
 						<img src={githubLogo} className='w-10' /> <p>Register with Github</p>
 					</div>
 				</div>

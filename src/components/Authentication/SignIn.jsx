@@ -57,11 +57,11 @@ const Login = () => {
 					<div className='w-1/4 h-px bg-slate-400 mr-3'></div>or<div className='w-1/4 h-px bg-slate-400 ml-3'></div>
 				</div>
 				{/* register with google and github */}
-				<div className='flex justify-between mt-7'>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold'>
+				<div className='flex flex-col md:flex-row justify-between mt-7 '>
+					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto mb-5 md:mb-0'>
 						<img src={googleLogo} className='w-10' /> <p>Register with Google</p>
 					</div>
-					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold'>
+					<div className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto'>
 						<img src={githubLogo} className='w-10' /> <p>Register with Github</p>
 					</div>
 				</div>
