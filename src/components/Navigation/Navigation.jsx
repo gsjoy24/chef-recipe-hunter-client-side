@@ -64,7 +64,12 @@ const Navigation = () => {
 				</ul>
 			</div>
 			<div className='navbar-end'>
-				{user && <img src={user?.photoURL} className='w-12 h-12  rounded-full mr-3' />}
+				{user && (
+					<div className='tooltip tooltip-bottom md:tooltip-left tooltip-primary' data-tip={user?.displayName}>
+						<img src={user?.photoURL} className='w-12 h-12  rounded-full mr-3' />{' '}
+					</div>
+				)}
+
 				{user ? (
 					<button onClick={signOutMethod} className='btn btn-primary btn-sm sm:btn-md'>
 						Sign out
