@@ -12,7 +12,9 @@ function App() {
 	return (
 		<>
 			<Navigation />
-			<Outlet />
+			<div className='min-h-[80vh]'>
+				<Outlet />
+			</div>
 			<Footer />
 		</>
 	);

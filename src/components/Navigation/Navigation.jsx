@@ -52,7 +52,7 @@ const Navigation = () => {
 					src='https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 					className='w-12 h-12  rounded-full mr-3'
 				/>
-				<a className='btn btn-primary btn-sm sm:btn-md'>Logout</a>
+				<Link to='/login' className='btn btn-primary btn-sm sm:btn-md'>Logout</Link>
 			</div>
 		</div>
 	);
