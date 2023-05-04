@@ -51,7 +51,7 @@ const Recipe = ({ recipe }) => {
 			<h3 className='text-lg font-medium '>ingredients</h3>
 			<ul>
 				{ingredients.map((ingredient) => (
-					<li className='flex items-end gap-2'>
+					<li key={ingredient} className='flex items-end gap-2'>
 						<FaAngleRight />
 						{ingredient}
 					</li>

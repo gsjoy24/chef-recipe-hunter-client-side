@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 						<Chef />
 					</PrivateRoute>
 				),
-				loader: ({ params }) => fetch(`https://chef-recipe-hunter-server-side-alpha.vercel.app/chef/${params.id}`)
+				loader: ({ params }) => fetch(`https://chef-recipe-hunter-server-side-gsjoy24.vercel.app/chef/${params.id}`)
 			}
 		]
 	}

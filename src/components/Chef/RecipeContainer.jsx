@@ -15,7 +15,7 @@ const RecipeContainer = ({ recipes }) => {
 
 			<div>
 				{recipes.map((recipe) => (
-					<Recipe key={recipe.id} recipe={recipe} />
+					<Recipe key={recipe.recipe_id} recipe={recipe} />
 				))}
 			</div>
 		</div>

@@ -6,9 +6,9 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
 	const { googleSignUp, githubSignUp, emailPasswordSignIn } = useContext(AuthContext);
-	const [error, setError] = useState('');
 	const location = useLocation();
 	const navigate = useNavigate();
+	const [error, setError] = useState('');
 	const from = location.state?.from?.pathname || '/';
 
 	// sign in with google
@@ -35,6 +35,7 @@ const Login = () => {
 			});
 	};
 
+	// sign in with email and password
 	const handleSignIn = (event) => {
 		event.preventDefault();
 		const email = event.target.email.value;
@@ -49,6 +50,7 @@ const Login = () => {
 				setError(error.message);
 			});
 	};
+
 	return (
 		<div className='flex justify-center items-center min-h-[90vh]'>
 			<div>
@@ -57,6 +59,7 @@ const Login = () => {
 					className='p-7 bg-slate-50 min-w-[300px] sm:min-w-[500px] max-w-lg rounded-md border border-1 border-stone-200'>
 					<h2 className='text-2xl font-bold mb-3'>Login Here</h2>
 					<hr />
+
 					{/* email field */}
 					<div className='form-control w-full mt-5'>
 						<label className='label'>
@@ -69,6 +72,7 @@ const Login = () => {
 							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full '
 						/>
 					</div>
+
 					{/* password field */}
 					<div className='form-control w-full '>
 						<label className='label'>
@@ -82,6 +86,7 @@ const Login = () => {
 							autoComplete='on'
 						/>
 					</div>
+
 					{/* error message */}
 					<p className='text-red-600 text-xs mt-2'>{error}</p>
 
@@ -96,9 +101,11 @@ const Login = () => {
 						</Link>
 					</p>
 				</form>
+
 				<div className='flex items-center justify-center my-4 text-slate-400'>
 					<div className='w-1/4 h-px bg-slate-400 mr-3'></div>or<div className='w-1/4 h-px bg-slate-400 ml-3'></div>
 				</div>
+
 				{/* register with google and github */}
 				<div className='flex flex-col md:flex-row justify-between mt-7 '>
 					{/* google authentication */}
@@ -107,6 +114,7 @@ const Login = () => {
 						className='flex items-center bg-slate-100 justify-between px-5 py-1 rounded-full w-60 cursor-pointer font-semibold mx-auto mb-5 md:mb-0'>
 						<img src={googleLogo} className='w-10' /> <p>Continue with Google</p>
 					</div>
+
 					{/* github authentication */}
 					<div
 						onClick={handleGithubSignup}

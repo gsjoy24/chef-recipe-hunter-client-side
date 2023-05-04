@@ -64,6 +64,7 @@ const Register = () => {
 					className='p-7 bg-slate-50 min-w-[300px] sm:min-w-[500px] max-w-lg rounded-md border border-1 border-stone-200'>
 					<h2 className='text-2xl font-bold mb-3'>Register Here</h2>
 					<hr />
+
 					{/* name field */}
 					<div className='form-control w-full mt-5'>
 						<label className='label'>
@@ -78,6 +79,7 @@ const Register = () => {
 							required
 						/>
 					</div>
+
 					{/* Photo url field */}
 					<div className='form-control w-full'>
 						<label className='label'>
@@ -92,6 +94,7 @@ const Register = () => {
 							required
 						/>
 					</div>
+
 					{/* email field */}
 					<div className='form-control w-full'>
 						<label className='label'>
@@ -106,6 +109,7 @@ const Register = () => {
 							required
 						/>
 					</div>
+
 					{/* password field */}
 					<div className='form-control w-full  '>
 						<label className='label'>
@@ -121,6 +125,7 @@ const Register = () => {
 							required
 						/>
 					</div>
+
 					{/* error message */}
 					<p className='text-red-600 text-xs mt-2'>{error}</p>
 
@@ -132,9 +137,11 @@ const Register = () => {
 						</Link>
 					</p>
 				</form>
+
 				<div className='flex items-center justify-center my-4 text-slate-400'>
 					<div className='w-1/4 h-px bg-slate-400 mr-3'></div>or<div className='w-1/4 h-px bg-slate-400 ml-3'></div>
 				</div>
+
 				{/* register with google and github */}
 				<div className='flex flex-col md:flex-row justify-between mt-7'>
 					{/* google sign up */}
