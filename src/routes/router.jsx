@@ -6,6 +6,7 @@ import Register from '../components/Authentication/Register';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import Chef from '../components/Chef/ChefPage';
 import PrivateRoute from './PrivateRoute';
+import Blog from '../components/Blog/Blog';
 
 const router = createBrowserRouter([
 	{
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <Home />,
 				loader: () => fetch('https://chef-recipe-hunter-server-side-gsjoy24.vercel.app/categories')
+			},
+			{
+				path: '/blog',
+				element: <Blog />
 			},
 			{
 				path: 'register',
