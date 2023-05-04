@@ -1,13 +1,20 @@
 import React from 'react';
 import { FaCalendarCheck, FaWpforms, FaUserAlt, FaThumbsUp } from 'react-icons/fa';
+import LazyLoad from 'react-lazy-load';
 const ChefBanner = ({ chef }) => {
 	const { picture, name, years_of_experience, number_of_recipes, number_of_likes, bio } = chef;
 	return (
 		<div className='flex flex-col md:flex-row justify-around items-center py-12 px-2 md:px-20 bg-slate-100'>
-
 			{/* photo of the chef */}
 			<div>
-				<img src={picture} className='w-72 max-h- block rounded-lg' alt={name} />
+				<LazyLoad
+					width='auto'
+					threshold={0.95}
+					onContentVisible={() => {
+						console.log('loaded!');
+					}}>
+					<img src={picture} className='w-72 max-h- block rounded-lg' alt={name} />
+				</LazyLoad>
 			</div>
 
 			{/* about the chef */}

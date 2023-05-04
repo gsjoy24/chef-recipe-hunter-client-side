@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCalendarCheck, FaWpforms, FaUserAlt, FaThumbsUp } from 'react-icons/fa';
+import LazyLoad from 'react-lazy-load';
 
 const Card = ({ chef }) => {
 	const { id, picture, name, years_of_experience, number_of_recipes, number_of_likes, bio } = chef;
 	return (
 		<div className='card min-w-[320px] max-w-[400px] bg-base-100 shadow-xl mx-auto'>
-			<figure>
-				<img className='h-52 w-full object-cover object-top' src={picture} alt='Shoes' />
-			</figure>
+			<LazyLoad
+				offset={100}
+				threshold={0.95}
+				onContentVisible={() => {
+					console.log('loaded!');
+				}}>
+				<figure>
+					<img className='h-52 w-full object-cover object-top' src={picture} alt='Shoes' />
+				</figure>
+			</LazyLoad>
 			<div className='card-body'>
 				<h2 className='card-title font-bold'> {name}</h2>
 				<p className='flex items-center'>
