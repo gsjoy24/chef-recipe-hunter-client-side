@@ -20,9 +20,9 @@ const Tutorial = () => {
 					className='w-full h-48 sm:h-64 md:h-72'
 					src='https://www.youtube.com/embed/F86GfZIph8o'
 					title='YouTube video player'
-					frameborder='0'
+					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-					allowfullscreen></iframe>
+					allowFullScreen></iframe>
 			</div>
 		</div>
 	);

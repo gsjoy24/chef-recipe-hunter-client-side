@@ -10,6 +10,10 @@ const ChefPage = () => {
 	const { id } = useParams();
 	const chef = chefs.find((chf) => chf.id === id);
 
+	if (!chef) {
+		return <h1>loading</h1>;
+	}
+
 	return (
 		<div>
 			<ChefBanner chef={chef} />
