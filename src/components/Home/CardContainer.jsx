@@ -2,6 +2,14 @@ import React from 'react';
 import Card from './Card';
 
 const CardContainer = ({ chefs }) => {
+	if (!chefs) {
+		return (
+			<div className='w-full min-h-[80vh] flex items-center justify-center'>
+				<button className='btn btn-primary loading'>loading</button>
+			</div>
+		);
+	}
+
 	return (
 		<div>
 			<div className='text-center pt-14 px-5'>

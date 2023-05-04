@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -10,6 +10,7 @@ const Register = () => {
 	const [photoURL, setPhotoURL] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 
 	const { emailPasswordSignUp, setNameAndPhoto, googleSignUp, githubSignUp } = useContext(AuthContext);
 
@@ -24,6 +25,7 @@ const Register = () => {
 						setError(error.message);
 					});
 				event.target.reset();
+				navigate('/');
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -35,6 +37,7 @@ const Register = () => {
 		googleSignUp()
 			.then((result) => {
 				console.log(result.user);
+				navigate('/');
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -46,6 +49,7 @@ const Register = () => {
 		githubSignUp()
 			.then((result) => {
 				console.log(result.user);
+				navigate('/');
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -113,6 +117,7 @@ const Register = () => {
 							placeholder='Password'
 							name='password'
 							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full'
+							autoComplete='on'
 							required
 						/>
 					</div>

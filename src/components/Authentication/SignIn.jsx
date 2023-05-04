@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googleLogo from '../../assets/google.png';
 import githubLogo from '../../assets/github.png';
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -7,12 +7,16 @@ import { AuthContext } from '../../Providers/AuthProvider';
 const Login = () => {
 	const { googleSignUp, githubSignUp, emailPasswordSignIn } = useContext(AuthContext);
 	const [error, setError] = useState('');
+	const location = useLocation();
+	const navigate = useNavigate();
+	const from = location.state?.from?.pathname || '/';
 
 	// sign in with google
 	const handleGoogleSignup = () => {
 		googleSignUp()
 			.then((result) => {
 				console.log(result.user);
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -24,6 +28,7 @@ const Login = () => {
 		githubSignUp()
 			.then((result) => {
 				console.log(result.user);
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -37,7 +42,8 @@ const Login = () => {
 		emailPasswordSignIn(email, password)
 			.then((result) => {
 				console.log(result.user);
-				event.target.reset()
+				event.target.reset();
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				setError(error.message);
@@ -73,6 +79,7 @@ const Login = () => {
 							placeholder='Password'
 							name='password'
 							className='p-3 rounded-md text-sm bg-slate-100 focus:outline-none focus:bg-violet-100 w-full '
+							autoComplete='on'
 						/>
 					</div>
 					{/* error message */}

@@ -5,6 +5,7 @@ import SignIn from '../components/Authentication/SignIn';
 import Register from '../components/Authentication/Register';
 import ErrorPage from '../components/ErrorPage/ErrorPage';
 import Chef from '../components/Chef/ChefPage';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
 	{
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: 'chef/:id',
-				element: <Chef />,
+				element: (
+					<PrivateRoute>
+						<Chef />
+					</PrivateRoute>
+				),
 				loader: ({ params }) => fetch(`https://chef-recipe-hunter-server-side-alpha.vercel.app/chef/${params.id}`)
 			}
 		]

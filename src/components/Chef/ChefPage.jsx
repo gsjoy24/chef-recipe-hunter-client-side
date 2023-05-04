@@ -11,7 +11,11 @@ const ChefPage = () => {
 	const chef = chefs.find((chf) => chf.id === id);
 
 	if (!chef) {
-		return <h1>loading</h1>;
+		return (
+			<div className='w-full min-h-[80vh] flex items-center justify-center'>
+				<button className='btn btn-primary loading'>loading</button>
+			</div>
+		);
 	}
 
 	return (

@@ -11,13 +11,16 @@ import {
 	signOut
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
+
 export const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
 	const auth = getAuth(app);
 	const googleProvider = new GoogleAuthProvider();
 	const githubProvider = new GithubAuthProvider();
 	const [user, setUser] = useState(null);
 	const [chefs, setChefs] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	// fetching chefs information
 	useEffect(() => {
@@ -31,25 +34,31 @@ const AuthProvider = ({ children }) => {
 
 	// for sign up
 	const emailPasswordSignUp = (email, password) => {
+		setLoading(true);
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
 	// for sign in
 	const emailPasswordSignIn = (email, password) => {
+		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 	// for sign in
 	const signOutMethod = () => {
+		setLoading(true);
 		return signOut(auth);
 	};
 
 	const googleSignUp = () => {
+		setLoading(true);
 		return signInWithPopup(auth, googleProvider);
 	};
 	const githubSignUp = () => {
+		setLoading(true);
 		return signInWithPopup(auth, githubProvider);
 	};
 	const setNameAndPhoto = (name, photoURL) => {
+		setLoading(true);
 		return updateProfile(auth.currentUser, { displayName: name, photoURL: photoURL });
 	};
 
@@ -57,13 +66,14 @@ const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (loggedInUser) => {
 			setUser(loggedInUser);
-			// setLoading(false);
+			setLoading(false);
 		});
 		return () => unsubscribe();
 	}, []);
 
 	const authInfo = {
 		user,
+		loading,
 		emailPasswordSignUp,
 		signOutMethod,
 		setNameAndPhoto,
